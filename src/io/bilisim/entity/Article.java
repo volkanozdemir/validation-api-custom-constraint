@@ -3,7 +3,6 @@ package io.bilisim.entity;
 import java.time.LocalDate;
 import java.util.List;
 
-import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -11,6 +10,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import io.bilisim.anotation.ValidateUsingAnotherStringField;
+
+@ValidateUsingAnotherStringField(fieldName="subject", expectedFieldValue="A", dependFieldName="publish",expectedDependFieldValue="true",message="Gecersiz publish degeri")
 public class Article {
 	@NotBlank(message = "author  alaný boþ olamaz!")
 	private String author;
@@ -24,7 +26,6 @@ public class Article {
 	private String title;
 	@FutureOrPresent(message = "lastSaveDate geçmiþte olamaz")
 	private LocalDate lastSaveDate;
-	@AssertTrue(message="Publish alaný true olmalý")
 	private Boolean publish;
 	@NotBlank(message = "Text alaný null olamaz")
 	private String text;
